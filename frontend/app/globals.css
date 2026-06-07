@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@theme {
+  --color-terracotta-50: #fef6f2;
+  --color-terracotta-100: #fde8dd;
+  --color-terracotta-200: #fad1be;
+  --color-terracotta-300: #f5ae91;
+  --color-terracotta-400: #ee8161;
+  --color-terracotta-500: #c2593f;
+  --color-terracotta-600: #a0442e;
+  --color-terracotta-700: #853725;
+  --color-terracotta-800: #6d2f21;
+  --color-terracotta-900: #5c291e;
+
+  --color-clay-50: #fdfaf6;
+  --color-clay-100: #f4ebe1;
+  --color-clay-200: #eddcd2;
+  --color-clay-300: #ddc8bc;
+  --color-clay-400: #c4ae9f;
+  --color-clay-500: #9e8777;
+  --color-clay-600: #7b6557;
+  --color-clay-700: #5c4a3e;
+  --color-clay-800: #3e332f;
+  --color-clay-900: #2c2523;
+
+  --color-forest-50: #f4f7f4;
+  --color-forest-100: #e3ebd6;
+  --color-forest-500: #4f772d;
+  --color-forest-600: #3f5e24;
+  --color-forest-700: #314a1c;
+
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+}
+
+:root {
+  --background: #fdfaf6;
+  --foreground: #2c2523;
+  --card: #ffffff;
+  --card-foreground: #2c2523;
+  --border: #eddcd2;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-playfair), Georgia, serif;
+  color: #2c2523;
+}
+
+/* Custom Scrollbar for Earthy feel */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #fdfaf6;
+}
+::-webkit-scrollbar-thumb {
+  background: #ddc8bc;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c2593f;
+}
+
+/* Loader Animation */
+.animate-spin-slow {
+  animation: spin 3s linear infinite;
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
