@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useApp } from "../../context/AppContext";
 import { User, Mail, Lock, Phone, ArrowRight, UserCheck } from "lucide-react";
 
-export default function LoginPage() {
+function LoginPageContent() {
   const { login, user, apiRequest, addNotification } = useApp();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -234,5 +234,13 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="h-64 flex items-center justify-center"><div className="h-8 w-8 border-4 border-terracotta-500 border-t-transparent rounded-full animate-spin"></div></div>}>
+      <LoginPageContent />
+    </Suspense>
   );
 }

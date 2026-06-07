@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useApp } from "../../../context/AppContext";
 import { ShoppingBag, Heart, Star, Compass, ShoppingCart, Truck, Calendar, MapPin } from "lucide-react";
 import Link from "next/link";
 
-export default function CustomerDashboard() {
+function CustomerDashboardContent() {
   const { user, apiRequest, addNotification, wishlist, toggleWishlist, addToCart } = useApp();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -339,5 +339,13 @@ export default function CustomerDashboard() {
       )}
 
     </div>
+  );
+}
+
+export default function CustomerDashboard() {
+  return (
+    <Suspense fallback={<div className="h-64 flex items-center justify-center"><div className="h-8 w-8 border-4 border-terracotta-500 border-t-transparent rounded-full animate-spin"></div></div>}>
+      <CustomerDashboardContent />
+    </Suspense>
   );
 }
