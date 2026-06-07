@@ -142,9 +142,10 @@ export const AppProvider = ({ children }) => {
 
   // 5. Shared API Request Helper
   const apiRequest = async (endpoint, options = {}) => {
-    const baseUrl = typeof window !== "undefined"
+    const defaultUrl = typeof window !== "undefined"
       ? `http://${window.location.hostname}:5000/api`
       : "http://localhost:5000/api";
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL || defaultUrl;
     const headers = {
       "Content-Type": "application/json",
       ...(user?.token ? { Authorization: `Bearer ${user.token}` } : {}),
