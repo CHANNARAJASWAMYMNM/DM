@@ -22,6 +22,35 @@ if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }
 
+// Ensure Supabase storage bucket exists
+const initSupabaseStorage = async () => {
+  try {
+    const { data: buckets, error } = await supabase.storage.listBuckets();
+    if (error) {
+      console.error('⚠️ Failed to list Supabase storage buckets:', error.message);
+      return;
+    }
+    const bucketExists = buckets.some(b => b.name === 'products');
+    if (!bucketExists) {
+      console.log('🔄 Creating Supabase storage bucket: products');
+      const { error: createError } = await supabase.storage.createBucket('products', {
+        public: true,
+        allowedMimeTypes: ['image/png', 'image/jpeg', 'image/gif', 'image/webp'],
+        fileSizeLimit: 5242880 // 5MB
+      });
+      if (createError) {
+        console.error('⚠️ Failed to create Supabase storage bucket:', createError.message);
+      } else {
+        console.log('✅ Supabase storage bucket: products created successfully!');
+      }
+    }
+  } catch (err) {
+    console.error('⚠️ Supabase storage bucket check error:', err.message);
+  }
+};
+initSupabaseStorage();
+
+
 // Global Middleware
 app.use(cors());
 app.use(express.json({ limit: '10mb' })); // Increase JSON limit to support Base64 image payload uploads

@@ -272,17 +272,33 @@ router.post('/upload', authenticateToken, async (req, res) => {
       return res.status(400).json({ success: false, message: 'Invalid base64 format.' });
     }
 
+    const mimeType = matches[1];
     const buffer = Buffer.from(matches[2], 'base64');
     const ext = filename.split('.').pop();
     const newFilename = `upload_${Date.now()}_${Math.floor(1000 + Math.random() * 9000)}.${ext}`;
     
-    const uploadPath = path.join(__dirname, '../public/uploads', newFilename);
-    fs.writeFileSync(uploadPath, buffer);
+    // Upload to Supabase Storage Bucket 'products'
+    const { data, error } = await supabase.storage
+      .from('products')
+      .upload(newFilename, buffer, {
+        contentType: mimeType,
+        upsert: true
+      });
+
+    if (error) {
+      console.error('Supabase storage upload error:', error);
+      return res.status(500).json({ success: false, message: 'Error uploading image to storage.' });
+    }
+
+    // Get the public URL
+    const { data: { publicUrl } } = supabase.storage
+      .from('products')
+      .getPublicUrl(newFilename);
 
     return res.json({
       success: true,
       message: 'Image uploaded successfully!',
-      url: `http://localhost:5000/uploads/${newFilename}`
+      url: publicUrl
     });
 
   } catch (error) {
@@ -290,5 +306,6 @@ router.post('/upload', authenticateToken, async (req, res) => {
     return res.status(500).json({ success: false, message: 'Server error saving uploaded file.' });
   }
 });
+
 
 module.exports = router;
