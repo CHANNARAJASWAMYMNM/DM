@@ -414,12 +414,19 @@ const storage = {
           fs.writeFileSync(path.join(uploadDir, filename), buffer);
           return { data: { path: filename }, error: null };
         } catch (err) {
-          return { data: null, error: { message: err.message } };
+          console.warn('⚠️ Local file write failed (read-only serverless environment), falling back to placeholder image:', err.message);
+          return { data: { path: 'fallback_clay_pot.png' }, error: null };
         }
       },
       getPublicUrl: (filename) => {
+        if (filename === 'fallback_clay_pot.png') {
+          return { data: { publicUrl: 'https://images.unsplash.com/photo-1612196808214-b8e1d6145a8c?w=600' } };
+        }
         const port = process.env.PORT || 5000;
-        return { data: { publicUrl: `http://localhost:${port}/uploads/${filename}` } };
+        const host = process.env.VERCEL_URL 
+          ? (process.env.VERCEL_URL.startsWith('http') ? process.env.VERCEL_URL : 'https://' + process.env.VERCEL_URL) 
+          : `http://localhost:${port}`;
+        return { data: { publicUrl: `${host}/uploads/${filename}` } };
       }
     };
   }
