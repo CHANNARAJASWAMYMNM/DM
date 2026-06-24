@@ -27,7 +27,19 @@ export const AppProvider = ({ children }) => {
       }
 
       if (storedCart) {
-        setCart(JSON.parse(storedCart));
+        try {
+          const parsed = JSON.parse(storedCart);
+          if (Array.isArray(parsed)) {
+            const sanitized = parsed.filter(item => item && item.product && item.product.id);
+            setCart(sanitized);
+            localStorage.setItem("artify_cart", JSON.stringify(sanitized));
+          } else {
+            setCart([]);
+          }
+        } catch (err) {
+          console.error("Failed to parse stored cart:", err);
+          setCart([]);
+        }
       }
 
       if (storedWishlist) {

@@ -1,0 +1,173 @@
+{
+  "users": [
+    {
+      "id": "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
+      "created_at": "2026-06-24T05:45:34.683Z",
+      "email": "admin@artify.com",
+      "password_hash": "$2a$10$bwIjyr..cl6aCNbZrWrg8O9KdoMfkfWKhFnygc5KKPQVkLphg7q/i",
+      "role": "admin",
+      "name": "Artify Admin",
+      "phone": "+91 9999999999"
+    },
+    {
+      "id": "b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e",
+      "created_at": "2026-06-24T05:45:34.710Z",
+      "email": "suresh@artify.com",
+      "password_hash": "$2a$10$bwIjyr..cl6aCNbZrWrg8O9KdoMfkfWKhFnygc5KKPQVkLphg7q/i",
+      "role": "seller",
+      "name": "Suresh Kumar",
+      "phone": "+91 8888888888"
+    },
+    {
+      "id": "c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f",
+      "created_at": "2026-06-24T05:45:34.710Z",
+      "email": "radha@artify.com",
+      "password_hash": "$2a$10$bwIjyr..cl6aCNbZrWrg8O9KdoMfkfWKhFnygc5KKPQVkLphg7q/i",
+      "role": "seller",
+      "name": "Radha Devi",
+      "phone": "+91 7777777777"
+    },
+    {
+      "id": "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a",
+      "created_at": "2026-06-24T05:45:34.710Z",
+      "email": "customer@artify.com",
+      "password_hash": "$2a$10$bwIjyr..cl6aCNbZrWrg8O9KdoMfkfWKhFnygc5KKPQVkLphg7q/i",
+      "role": "customer",
+      "name": "Amit Sharma",
+      "phone": "+91 9876543210"
+    },
+    {
+      "id": "2bf9f42e-2110-4763-a46c-9d285c802b5a",
+      "created_at": "2026-06-24T05:53:32.739Z",
+      "email": "akshayaloka2020@gmail.com",
+      "password_hash": "$2a$10$hUmPRVfIuR2.Ku5NLp27yOTgDQP7XL95.F.oGjPzDDLBEw/qsY8IS",
+      "role": "seller",
+      "name": "Vasudev Achar",
+      "phone": "9353022120"
+    }
+  ],
+  "seller_profiles": [
+    {
+      "id": "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b",
+      "user_id": "b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e",
+      "business_name": "Kumhar Gram Terracotta",
+      "story": "I have been shaping riverbed clay since my childhood in Kumhar Gram. Each piece is fired in a wood-fueled kiln, giving it the natural variations of fire and earth. Cookware made of this clay naturally retains food nutrients.",
+      "craft_type": "Terracotta Clay Cookware & Pots",
+      "city": "New Delhi",
+      "state": "Delhi",
+      "upi_id": "suresh@okaxis",
+      "bank_details": "A/C: 1002003004, SBI, Kumhar Gram Branch",
+      "is_approved": true,
+      "created_at": "2026-06-24T05:00:00.000Z"
+    },
+    {
+      "id": "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c",
+      "user_id": "c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f",
+      "business_name": "Radha Handlooms",
+      "story": "Taught by my grandmother, I spin organic cotton on a hand-operated charkha. Our handloom stoles take up to three days of manual weaving and use 100% natural vegetable dyes (indigo, madder root, and turmeric).",
+      "craft_type": "Handwoven Stoles & Cotton Rugs",
+      "city": "Bhagalpur",
+      "state": "Bihar",
+      "upi_id": "radha@okicici",
+      "bank_details": "A/C: 5006007008, PNB, Bhagalpur Branch",
+      "is_approved": true,
+      "created_at": "2026-06-24T05:00:00.000Z"
+    },
+    {
+      "id": "8453472d-36d0-4a68-b964-e5a4b16eec20",
+      "created_at": "2026-06-24T05:53:32.742Z",
+      "user_id": "2bf9f42e-2110-4763-a46c-9d285c802b5a",
+      "business_name": "Vasudev Achar's Crafts",
+      "story": "Tell your customers about your journey, your craft, and the materials you use.",
+      "craft_type": "Clay Products / Pottery",
+      "city": "Unknown",
+      "state": "Unknown",
+      "upi_id": "",
+      "bank_details": "",
+      "is_approved": true
+    }
+  ],
+  "products": [
+    {
+      "id": "11111111-1111-1111-1111-111111111111",
+      "seller_id": "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b",
+      "name": "Traditional Terracotta Water Pot",
+      "description": "Keep your water cool naturally during summers. Crafted using high porosity clay from the Yamuna riverbeds. Includes clay lid.",
+      "price": 18.5,
+      "stock": 15,
+      "image_url": "https://images.unsplash.com/photo-1612196808214-b8e1d6145a8c?w=600",
+      "category": "Ceramics",
+      "tags": [
+        "pottery",
+        "clay pot",
+        "kitchenware"
+      ],
+      "created_at": "2026-06-24T05:00:00.000Z"
+    },
+    {
+      "id": "22222222-2222-2222-2222-222222222222",
+      "seller_id": "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b",
+      "name": "Terracotta Biryani Handi (Clay Cookware)",
+      "description": "Organic earthenware handi suitable for gas stoves and wood ovens. Cooking in clay balances the pH level of foods.",
+      "price": 24,
+      "stock": 8,
+      "image_url": "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=600",
+      "category": "Ceramics",
+      "tags": [
+        "cookware",
+        "handi",
+        "organic"
+      ],
+      "created_at": "2026-06-24T05:00:00.000Z"
+    },
+    {
+      "id": "33333333-3333-3333-3333-333333333333",
+      "seller_id": "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c",
+      "name": "Organic Indigo Handloom stole",
+      "description": "Handwoven stole dyed in natural indigo. Perfect accessory for linen outfits. Breathable and soft cotton texture.",
+      "price": 32,
+      "stock": 5,
+      "image_url": "https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?w=600",
+      "category": "Textiles",
+      "tags": [
+        "handloom",
+        "indigo",
+        "cotton",
+        "stole"
+      ],
+      "created_at": "2026-06-24T05:00:00.000Z"
+    },
+    {
+      "id": "44444444-4444-4444-4444-444444444444",
+      "seller_id": "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c",
+      "name": "Traditional Wood-carved Jewelry Box",
+      "description": "Solid rosewood chest with brass inlay motifs. Features red velvet compartments to protect rings and necklaces.",
+      "price": 29,
+      "stock": 12,
+      "image_url": "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=600",
+      "category": "Woodwork",
+      "tags": [
+        "rosewood",
+        "brass inlay",
+        "jewelry box"
+      ],
+      "created_at": "2026-06-24T05:00:00.000Z"
+    },
+    {
+      "id": "df7d2ec4-8700-4bdb-8f66-5b671e0cd67d",
+      "created_at": "2026-06-24T05:55:05.517Z",
+      "seller_id": "8453472d-36d0-4a68-b964-e5a4b16eec20",
+      "name": "Clay pot",
+      "description": "clay",
+      "price": 350,
+      "stock": 13,
+      "image_url": "http://localhost:5000/uploads/upload_1782280497387_4623.jpg",
+      "category": "Ceramics",
+      "tags": []
+    }
+  ],
+  "orders": [],
+  "order_items": [],
+  "payments": [],
+  "reviews": []
+}

@@ -46,6 +46,8 @@ async function seed() {
     ];
 
     // Delete existing users to prevent constraint conflicts
+    await supabase.from('products').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+    await supabase.from('seller_profiles').delete().neq('id', '00000000-0000-0000-0000-000000000000');
     await supabase.from('users').delete().neq('id', '00000000-0000-0000-0000-000000000000');
 
     const { error: userError } = await supabase.from('users').insert(users);

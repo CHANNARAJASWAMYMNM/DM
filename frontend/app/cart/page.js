@@ -22,7 +22,8 @@ export default function CartPage() {
   const [cardExpiry, setCardExpiry] = useState("");
   const [cardCvv, setCardCvv] = useState("");
 
-  const subtotal = cart.reduce((sum, item) => sum + parseFloat(item.product.price) * item.quantity, 0);
+  const validCart = cart.filter((item) => item && item.product && item.product.id);
+  const subtotal = validCart.reduce((sum, item) => sum + parseFloat(item.product.price) * item.quantity, 0);
   const shippingCharge = subtotal > 50 ? 0 : 5.0; // Free shipping over ₹50
   const grandTotal = subtotal + shippingCharge;
 
@@ -37,13 +38,13 @@ export default function CartPage() {
       addNotification("Only customer accounts can place orders.", "warning");
       return;
     }
-    if (cart.length === 0) {
+    if (validCart.length === 0) {
       addNotification("Your cart is empty.", "warning");
       return;
     }
 
     // Prepare payload
-    const cartItemsPayload = cart.map((item) => ({
+    const cartItemsPayload = validCart.map((item) => ({
       productId: item.product.id,
       quantity: item.quantity,
     }));
@@ -119,7 +120,7 @@ export default function CartPage() {
   }
 
   // If cart is empty
-  if (cart.length === 0) {
+  if (validCart.length === 0) {
     return (
       <div className="max-w-md mx-auto px-4 py-24 text-center space-y-6">
         <Package className="h-16 w-16 text-clay-300 mx-auto" />
@@ -147,7 +148,7 @@ export default function CartPage() {
         
         {/* Left Side: Cart Items List */}
         <div className="lg:col-span-7 space-y-4">
-          {cart.map((item) => (
+          {validCart.map((item) => (
             <div
               key={item.product.id}
               className="bg-white border border-clay-200 rounded-2xl p-5 shadow-xs flex gap-4 items-center justify-between"

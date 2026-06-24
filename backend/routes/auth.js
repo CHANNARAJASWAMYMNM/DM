@@ -122,6 +122,7 @@ router.post('/login', async (req, res) => {
   }
 
   try {
+    console.log('🔑 Login attempt for:', email);
     // Find user
     const { data: user, error: fetchError } = await supabase
       .from('users')
@@ -132,11 +133,13 @@ router.post('/login', async (req, res) => {
     if (fetchError) throw fetchError;
 
     if (!user) {
+      console.log('❌ User not found in DB:', email.toLowerCase());
       return res.status(401).json({ success: false, message: 'Invalid credentials.' });
     }
 
     // Verify password
     const isMatch = await bcrypt.compare(password, user.password_hash);
+    console.log('🔐 Password check result for', email, ':', isMatch ? 'SUCCESS' : 'FAILED');
     if (!isMatch) {
       return res.status(401).json({ success: false, message: 'Invalid credentials.' });
     }
