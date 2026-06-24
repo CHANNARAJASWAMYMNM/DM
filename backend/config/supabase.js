@@ -40,8 +40,25 @@ function getValue(obj, pathStr) {
   return pathStr.split('.').reduce((acc, part) => acc && acc[part], obj);
 }
 
+function normalizeImageUrl(url) {
+  if (!url || typeof url !== 'string') return url;
+  if (url.includes('/uploads/')) {
+    const filename = url.split('/uploads/').pop();
+    const port = process.env.PORT || 5000;
+    const host = process.env.VERCEL_URL 
+      ? (process.env.VERCEL_URL.startsWith('http') ? process.env.VERCEL_URL : 'https://' + process.env.VERCEL_URL) 
+      : `http://localhost:${port}`;
+    return `${host}/uploads/${filename}`;
+  }
+  return url;
+}
+
 function resolveRelations(tableName, record, db) {
   const result = { ...record };
+
+  if (result.image_url) {
+    result.image_url = normalizeImageUrl(result.image_url);
+  }
 
   if (tableName === 'products') {
     const seller = db.seller_profiles.find(s => s.id === record.seller_id);
